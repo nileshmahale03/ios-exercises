@@ -11,23 +11,48 @@
 @implementation StarTrekArrays
 
 - (NSArray *) arrayOfStarTrekCharactersFromString:(NSString *)characterString {
-    /* WORK HERE */
-    return @[];
+    
+    NSArray *myArray = [characterString componentsSeparatedByString:@";"];
+    // convert String to Array
+    
+    return myArray;
+    // return Array
 }
 
 - (NSString *) stringOfStarTrekCharactersFromArray:(NSArray *)characterArray {
-    /* WORK HERE */
-    return @"";
+    
+    NSString *myString = [characterArray componentsJoinedByString:@";"];
+    // convert Array to String
+    
+    return myString;
+    // return String
 }
 
 - (NSArray *) alphabeticallySortedStarTrekCharactersFromArray:(NSArray *)characterArray {
-    /* WORK HERE */
-    return @[];
+    
+    NSMutableArray *myMutableArray = [characterArray mutableCopy];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:nil ascending:YES];
+    [myMutableArray sortUsingDescriptors:@[sortDescriptor]];
+    // create NSMutableArray with ascending order of an Array
+    
+    return myMutableArray;
+    // return NSMutableArray
 }
 
 - (BOOL) characterArrayContainsWorf:(NSArray *)characterArray {
-    /* WORK HERE */
-    return NO;
+    
+    NSMutableArray *myMutableArray = [characterArray mutableCopy];
+    NSPredicate *containsWorf = [NSPredicate predicateWithFormat:@"SELF CONTAINS[c]'Worf'"];
+    
+    [myMutableArray filterUsingPredicate:containsWorf];
+    // create NSMutableArray that CONTAINS word "Worf"
+    
+    if (myMutableArray.count > 0) {
+        return YES;
+    } else {
+       return NO;
+    }
+    // return Yes or No if the Array has objects 
 }
 
 @end
